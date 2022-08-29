@@ -8,7 +8,12 @@ jobs:
     executor: default
     steps:
       - checkout
-      - run: echo "hello"
+      - run: 
+          name: update-pr-status
+          command: |
+             curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token $VIJAY_GITHUB_PAT" https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/statuses/1e01d95a6217424f8c2346d59ef7a0e7cf778238 -d '{"state":"success","target_url":"https://circleci.com/gh/vjpandian/$CIRCLE_PROJECT_REPONAME","description":"Tests passed successfully","context":"main"}'
+             curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token $VIJAY_GITHUB_PAT" https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/statuses/$CIRCLE_SHA1 -d '{"state":"success","target_url":"https://circleci.com/gh/vjpandian/$CIRCLE_PROJECT_REPONAME","description":"Tests passed successfully","context":"main"}'
+
 workflows:
   main:
     jobs:
