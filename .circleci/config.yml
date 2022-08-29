@@ -17,4 +17,5 @@ jobs:
 workflows:
   main:
     jobs:
-      - build
+      - build:
+          context: org-global
