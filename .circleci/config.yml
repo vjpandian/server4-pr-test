@@ -1,0 +1,14 @@
+version: 2.1
+executors:
+  default:
+    docker:
+      - image: cimg/base:stable
+jobs: 
+  build:
+    executor: default
+    steps:
+      - checkout
+workflows:
+  main:
+    jobs:
+      - build
