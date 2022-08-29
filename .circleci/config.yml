@@ -2,13 +2,15 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: cimg/base:stable
+      - image: 483285841698.dkr.ecr.ca-central-1.amazonaws.com/circle-vijay:base
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY  # can specify string literal values
+          aws_secret_access_key: $AWS_SECRET_KEY  # or project UI envar reference
 jobs: 
   build:
     executor: default
     steps:
       - checkout
-      - run: exit 1
       - run: 
           name: API call to report status (on success)
           command: |
