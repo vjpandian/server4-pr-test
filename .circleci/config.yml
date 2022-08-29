@@ -8,11 +8,19 @@ jobs:
     executor: default
     steps:
       - checkout
+      - run: exit 1
       - run: 
-          name: update-pr-status
+          name: API call to report status (on success)
           command: |
-             curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token $VIJAY_GITHUB_PAT" https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/statuses/1e01d95a6217424f8c2346d59ef7a0e7cf778238 -d '{"state":"success","target_url":"https://circleci.com/gh/vjpandian/$CIRCLE_PROJECT_REPONAME","description":"Tests passed successfully","context":"main"}'
-             curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token $VIJAY_GITHUB_PAT" https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/statuses/$CIRCLE_SHA1 -d '{"state":"success","target_url":"https://circleci.com/gh/vjpandian/server4-pr-test","description":"Your tests passed on CircleCI Enterprise!","context":"ci/circleci_enterprise: build"}'
+             curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token $VIJAY_GITHUB_PAT" https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/statuses/$CIRCLE_SHA1 -d '{"state":"success","target_url":"https://github.com/vjpandian/server4-pr-test","description":"Tests passed successfully","context":"main"}'
+          when: on_success
+      - run: 
+          name: API call to report status (on failure)
+          command: |
+             curl -X POST -H "Accept: application/vnd.github+json" -H "Authorization: token $VIJAY_GITHUB_PAT" https://api.github.com/repos/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/statuses/$CIRCLE_SHA1 -d '{"state":"failure","target_url":"https://github.com/vjpandian/server4-pr-test","description":"Tests failed","context":"main"}'
+          when: on_fail
+
+             
 
 workflows:
   main:
