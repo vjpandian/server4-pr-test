@@ -11,6 +11,7 @@ jobs:
     executor: default
     steps:
       - checkout
+      - run: exit 1
       - run: 
           name: API call to report status (on success)
           command: |
