@@ -2,7 +2,7 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: ubuntu:latest
+      - image: postgres:latest
 jobs: 
   build:
     executor: default
