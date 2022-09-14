@@ -2,10 +2,12 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: cimg/base:stable
+      - image: ubuntu:latest
 jobs: 
   build:
     executor: default
+    #machine: true
+    #docker_layer_caching: true
     steps:
       - checkout
 workflows:
