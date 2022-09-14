@@ -2,7 +2,7 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: mongo:latest
+      - image: slightlytyler/large-image-test:latest
 jobs: 
   build:
     executor: default
