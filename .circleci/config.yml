@@ -1,16 +1,20 @@
 version: 2.1
-executors:
-  default:
-    docker:
-      - image: slightlytyler/large-image-test:latest
 jobs: 
-  build:
-    executor: default
-    #machine: true
-    #docker_layer_caching: true
+  pull-dlc:
+    machine: true
+    docker_layer_caching: true
     steps:
       - checkout
+      - run: docker pull slightlytyler/large-image-test:latest
+
+  pull-no-dlc:
+    machine: true
+    steps:
+      - checkout
+      - run: docker pull slightlytyler/large-image-test:latest
+      
 workflows:
   main:
     jobs:
-      - build
+      - pull-dlc
+      - pull-no-dlc
