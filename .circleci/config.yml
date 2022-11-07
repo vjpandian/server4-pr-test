@@ -15,7 +15,8 @@ jobs:
           name: "Curl GitHub"
           command: curl.exe https://github.com
       - run:
-          command: dir
+          command: Get-ChildItem C:\Users
+          shell: powershell.exe
   v4-linux-pre-1:
     machine: true
     steps:
