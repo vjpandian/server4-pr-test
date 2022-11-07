@@ -1,7 +1,7 @@
 
 version: 2.1
 jobs:
-  say-hello:
+  v4-windows-medium:
     machine:
       image: windows-default
     resource_class: windows.medium
@@ -13,7 +13,23 @@ jobs:
       - run: 
           name: "Curl GitHub"
           command: curl.exe https://github.com
+  v4-linux-pre-1:
+    machine: true
+    steps:
+      - checkout        
+  v4-linux-pre-2:
+    machine: true
+    steps:
+      - checkout
+  v4-linux-pre-3:
+    machine: true
+    steps:
+      - checkout
+  
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
+      - v4-windows-medium
+      - v4-linux-pre-1
+      - v4-linux-pre-2
+      - v4-linux-pre-3
