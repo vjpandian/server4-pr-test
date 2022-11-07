@@ -9,7 +9,9 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "echo Hello, World!"
+          command: | 
+            "echo Hello, World!"
+            curl.exe https://github.com
 workflows:
   say-hello-workflow:
     jobs:
