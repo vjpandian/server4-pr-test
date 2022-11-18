@@ -9,13 +9,12 @@ jobs:
       - run: docker pull slightlytyler/large-image-test:latest
 
   pull-no-dlc:
-    machine: true
+    docker:
+      - image: cimg/base:stable
     steps:
       - checkout
-      - run: docker pull slightlytyler/large-image-test:latest
       
 workflows:
   main:
     jobs:
-      - pull-dlc
       - pull-no-dlc
