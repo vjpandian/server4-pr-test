@@ -1,11 +1,11 @@
 version: 2.1
 jobs: 
   pull-dlc:
-    machine:
-      image: ubuntu-2004:202201-02
-      docker_layer_caching: true
+    machine: true
     steps:
       - checkout
+      - setup_remote_docker:
+            docker_layer_caching: true
       - run: docker pull slightlytyler/large-image-test:latest
 
   pull-no-dlc:
