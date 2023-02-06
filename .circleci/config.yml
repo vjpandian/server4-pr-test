@@ -13,6 +13,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - run: echo "changes in develop branch"
       
 workflows:
   main:
