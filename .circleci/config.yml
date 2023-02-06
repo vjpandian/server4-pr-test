@@ -13,7 +13,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      
+      - run: echo "changes in develop branch"
+      - run: echo "PR update for rc-branch"
 workflows:
   main:
     jobs:
