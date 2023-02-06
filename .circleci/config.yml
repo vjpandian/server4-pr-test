@@ -11,7 +11,7 @@ jobs:
   docker-no-dlc:
     docker:
       - image: cimg/base:stable
-    resource_class: medium
+    resource_class: large
     steps:
       - checkout
       
