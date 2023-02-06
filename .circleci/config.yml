@@ -8,7 +8,7 @@ jobs:
             docker_layer_caching: true
       - run: docker pull slightlytyler/large-image-test:latest
 
-  pull-no-dlc:
+  docker-no-dlc:
     docker:
       - image: cimg/base:stable
     steps:
@@ -17,4 +17,4 @@ jobs:
 workflows:
   main:
     jobs:
-      - pull-no-dlc
+      - docker-no-dlc
