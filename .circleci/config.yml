@@ -7,6 +7,15 @@ jobs:
       - setup_remote_docker:
             docker_layer_caching: true
       - run: docker pull slightlytyler/large-image-test:latest
+      
+
+  my-job:
+    machine:
+      image: arm-default
+    resource_class: arm.medium
+    steps:
+      - run: uname -a
+      - run: echo "Hello, Arm!"
 
   pull-no-dlc:
     docker:
@@ -18,3 +27,4 @@ workflows:
   main:
     jobs:
       - pull-no-dlc
+      - my-job
