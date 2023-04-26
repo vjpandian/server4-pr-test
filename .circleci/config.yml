@@ -10,9 +10,8 @@ jobs:
       
 
   my-job:
-    machine:
-      image: arm-default
-    resource_class: arm.medium
+    machine: true
+    resource_class: medium
     steps:
       - run: uname -a
       - run: echo "Hello, Arm!"
