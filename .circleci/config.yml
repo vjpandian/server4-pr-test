@@ -9,14 +9,14 @@ jobs:
       - run: docker pull slightlytyler/large-image-test:latest
       
 
-  my-job:
+  ubuntu-job:
     machine: true
     resource_class: medium
     steps:
       - run: uname -a
       - run: echo "Hello, Arm!"
 
-  pull-no-dlc:
+  docker-no-dlc:
     docker:
       - image: cimg/base:stable
     steps:
@@ -25,5 +25,5 @@ jobs:
 workflows:
   main:
     jobs:
-      - pull-no-dlc
-      - my-job
+      - docker-no-dlc
+      - ubuntu-job
